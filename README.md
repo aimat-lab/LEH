@@ -76,7 +76,7 @@ The configuration of every model of the paper is in its run directory:
 | `experiments/wb97/runs_main` | benchmark LEH and Direct-softmin models, learning curves (1k–all training molecules) |
 | `experiments/wb97/runs_lc` | baselines of the learning curves: X-MACE (`xmace128_*`), MS-ANI architecture (`*_msani`, `*_vecmsani`), fine-tuned OMNI-P2x (`*_omnift*`, three ensemble members each) |
 | `experiments/wb97/runs_abl` | readout ablations (10k training molecules) and the population loss (`abl_leh_pop*`) |
-| `experiments/wb97/runs_hp`, `runs_hp3`, `runs_nk`, `runs_xlab` | hyperparameters, latent channels per atom, label ablation |
+| `experiments/wb97/runs_hp`, `runs_nk`, `runs_xlab` | hyperparameters (incl. `hp3_*`), latent channels per atom, label ablation |
 | `experiments/conj/runs_B` | dye-augmented models |
 | `experiments/qcdge/runs_final` | QCDGE size extrapolation |
 | `experiments/al/runs` | excited-state sampling models (`sampler_*`) and production models (`prod_*` uniform loss, `prodw_*` weighted loss) |

@@ -22,13 +22,13 @@ EXTRA = ["release/export_dataset.py", "release/export_dataset_v1.py", "release/r
 SKIP_PREFIX = ["experiments/smoke", "experiments/wb97/runs/", "experiments/tm/", "experiments/tm_data",
                "experiments/qcdge/runs/", "experiments/al/finish_", "experiments/eigvec/tddft/raw_index.txt"]
 RUN_FILES = {"config.yaml", "job.yaml", "summary.json"}  # inside run directories
-SUBS = [(r"/path/to/workspace/transferable_excited_MLIP/", "", (".yaml", ".json")),
-        (r"/path/to/workspace/transferable_excited_MLIP/", "", (".yaml", ".json")),
-        (r"/path/to/workspace", "/path/to/workspace", None),
-        (r"/path/to/workspace", "/path/to/workspace", None),
-        (r"cd "$(dirname "$0")/../.."", 'cd "$(dirname "$0")/../.."', None),
-        (r"-u $USER", "-u $USER", None),
-        (r"#SBATCH -A <account>\b", "#SBATCH -A <account>", None)]
+SUBS = [(r"/pfs/work9/workspace/scratch/ka_bp4935-aimat04/transferable_excited_MLIP/", "", (".yaml", ".json")),
+        (r"/hfs2/work/workspace/scratch/ka_bp4935-aimat1/transferable_excited_MLIP/", "", (".yaml", ".json")),
+        (r"/pfs/work9/workspace/scratch/ka_bp4935-aimat04", "/path/to/workspace", None),
+        (r"/hfs2/work/workspace/scratch/ka_bp4935-aimat1", "/path/to/workspace", None),
+        (r"cd /home/pascal/todel/transferable_excited_MLIP", 'cd "$(dirname "$0")/../.."', None),
+        (r"-u ka_bp4935", "-u $USER", None),
+        (r"#SBATCH -A aimat\b", "#SBATCH -A <account>", None)]
 LEFTOVER = re.compile(r"ka_bp4935|/home/pascal|aimat0\d|aimat1\b")
 
 
@@ -38,7 +38,7 @@ def selected():
         rel = p.relative_to(ROOT).as_posix()
         if "__pycache__" in rel or p.suffix not in EXT or any(rel.startswith(s) for s in SKIP_PREFIX):
             continue
-        if "/runs" in rel and p.name not in RUN_FILES:
+        if "/runs" in rel and (p.name not in RUN_FILES or "/failed_" in rel):  # failed starts are not models
             continue
         if p.stat().st_size > MAX_BYTES:
             print("too large, skipped:", rel, p.stat().st_size); continue

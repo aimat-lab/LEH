@@ -4,7 +4,7 @@ for Zenodo. The v1 export script is kept as release/export_dataset_v1.py (output
 Outputs (default release/out_v4/):
   zenodo/leh_wb97xd_v4.h5             all 303,061 geometries with labels (ragged atoms stored flat with offsets), splits
                                       of the benchmark, dye-augmented and production models as index arrays
-  zenodo/splits/*.json                the same splits as JSON (indices into the entry order of the HDF5 file)
+  zenodo/split_<name>.json            the same splits as JSON (indices into the entry order of the HDF5 file)
   zenodo/fc_test_eq_forces.h5         extra test set: S1-S3 forces at equilibrium geometries of 2,499 test molecules
   zenodo/molecule_pairs.h5            separability test: 120 monomers, 1,680 pair geometries, TD-DFT spectra of 180 pairs
   zenodo/reference_trajectories.h5    the 12 TD-wB97X-D S1 NVE trajectories (7 validation, 5 test) with initial
@@ -68,7 +68,7 @@ RAW_GROUP = {"wb97_eq": "qcdge_minima", "t1": "thermal", "t2": "thermal", "dyes_
 RAW_DIRS = {"qcdge_eq": ["wb97_eq"], "offeq": ["t1", "t2", "dyes_md", "ladders_md"], "eq": ["dyes_eq", "ladders_eq"],
             "excmd": ["s1r1", "s1r2", "s1r3", "s1r4"]}
 OUT = Path(a.out); Z_DIR = OUT / "zenodo"; AUX = OUT / "aux"
-for d in (Z_DIR / "splits", AUX):
+for d in (Z_DIR, AUX):
     d.mkdir(parents=True, exist_ok=True)
 H5 = dict(compression="gzip", compression_opts=4, shuffle=True)
 STR = h5py.string_dtype()
@@ -228,7 +228,7 @@ with h5py.File(h5, "w") as f:
         S = json.load(open(p)); g2 = sg.create_group(name)
         for k, idx in S.items():
             idx = np.asarray(idx, np.int64); assert idx.max() < N; g2[k] = idx
-        json.dump({k: [int(i) for i in v] for k, v in S.items()}, open(Z_DIR / "splits" / f"{name}.json", "w"))
+        json.dump({k: [int(i) for i in v] for k, v in S.items()}, open(Z_DIR / f"split_{name}.json", "w"))
 print("written", h5)
 
 # ---------------------------------------------------------------- extra test set: S1-S3 forces at equilibrium

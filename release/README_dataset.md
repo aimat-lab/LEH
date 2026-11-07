@@ -12,7 +12,7 @@ License: CC BY 4.0. Code and trained models: https://github.com/aimat-lab/LEH (M
 | File | Content |
 |---|---|
 | `leh_wb97xd_v4.h5` | all 303,061 geometries with labels; splits of the benchmark, dye-augmented, and production models as index arrays |
-| `splits/{benchmark,dye_augmented,production}.json` | the same splits as JSON |
+| `split_{benchmark,dye_augmented,production}.json` | the same splits as JSON (indices into the entries) |
 | `fc_test_eq_forces.h5` | extra test set: S1–S3 forces at the equilibrium geometries of 2,499 test molecules |
 | `molecule_pairs.h5` | separability test: pairs of test molecules at 2.5–20 Å, TD-DFT dimer spectra of 180 pair geometries |
 | `reference_trajectories.h5` | 12 TD-ωB97X-D S1 trajectories (7 validation, 5 test molecules) with initial conditions |

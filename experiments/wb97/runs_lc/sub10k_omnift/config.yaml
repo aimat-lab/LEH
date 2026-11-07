@@ -1,0 +1,9 @@
+data: data/wb97_all_100k_s1.pkl
+epochs: 100
+head: omnip2x_finetuned
+head_kwargs: {}
+n_force: 3
+n_states: 10
+n_sup: 10
+seed: 0
+split: experiments/wb97/split_100k_s1_sub10k.json

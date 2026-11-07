@@ -1,0 +1,1 @@
+{"model": "OMNI-P2x fine-tuned (3 members)", "hours_predict": 0.32167022824287417, "n": {"val": 3312, "test_random_eq": 8900, "test_random_offeq": 9182, "test_random_exc": 1449, "test_scaffold_eq": 10003, "test_scaffold_offeq": 10401, "test_scaffold_exc": 1802, "test_large_eq": 500, "test_large_offeq": 498, "test_large_exc": 963}}

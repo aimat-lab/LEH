@@ -1,0 +1,1 @@
+{"model": "OMNI-P2x fine-tuned (3 members)", "hours_predict": 0.13048101829157935, "n": {"val": 200, "test_dye_noS_eq": 373, "test_dye_noS_offeq": 373, "test_lad_noS_eq": 1226, "test_lad_noS_offeq": 1228, "test_dyeall_noS_eq": 3875, "test_dyeall_noS_offeq": 3845}}

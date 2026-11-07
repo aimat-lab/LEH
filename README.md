@@ -69,10 +69,21 @@ Energies are absolute TD-ωB97X-D/6-31G* energies in eV, forces in eV/Å. Use th
 python -m exmlip.training.train experiments/al/runs/prodw_leh_v4_s0/config.yaml --set out=runs/my_leh
 ```
 
-The configuration of every model of the paper is in its run directory: `experiments/wb97/runs_main` (benchmark models
-and learning curves), `runs_lc`, `runs_abl` (readout ablations and the population loss), `runs_hp`, `runs_hp3`
-(hyperparameters), `experiments/qcdge/runs_final` (QCDGE size extrapolation), `experiments/al/runs` (excited-state
-sampling models `sampler_*` and production models `prod_*`, `prodw_*`). `hpc/` contains the Slurm scripts we used on
+The configuration of every model of the paper is in its run directory:
+
+| directory | models |
+|---|---|
+| `experiments/wb97/runs_main` | benchmark LEH and Direct-softmin models, learning curves (1k–all training molecules) |
+| `experiments/wb97/runs_lc` | baselines of the learning curves: X-MACE (`xmace128_*`), MS-ANI architecture (`*_msani`, `*_vecmsani`), fine-tuned OMNI-P2x (`*_omnift*`, three ensemble members each) |
+| `experiments/wb97/runs_abl` | readout ablations (10k training molecules) and the population loss (`abl_leh_pop*`) |
+| `experiments/wb97/runs_hp`, `runs_hp3`, `runs_nk`, `runs_xlab` | hyperparameters, latent channels per atom, label ablation |
+| `experiments/conj/runs_B` | dye-augmented models |
+| `experiments/qcdge/runs_final` | QCDGE size extrapolation |
+| `experiments/al/runs` | excited-state sampling models (`sampler_*`) and production models (`prod_*` uniform loss, `prodw_*` weighted loss) |
+
+The X-MACE and MS-ANI/OMNI-P2x baselines were trained with their own codes (`envs/req_xmace.txt`,
+`envs/req_mlatom.txt`, `experiments/baselines/`); their checkpoints are `xmace.model`, `model.pt`, and `member*.pt`.
+`hpc/` contains the Slurm scripts we used on
 HoreKa, bwUniCluster, and a GPU cluster at KIT, with cluster paths and accounts replaced by placeholders.
 
 ## Reproducing the paper

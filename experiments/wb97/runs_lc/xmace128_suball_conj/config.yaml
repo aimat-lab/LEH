@@ -1,0 +1,7 @@
+data: data/wb97_all_100k_s1_conj.pkl
+head: xmace
+head_kwargs: {}
+n_force: 3
+n_states: 10
+n_sup: 3
+split: experiments/conj/split_conj_only.json

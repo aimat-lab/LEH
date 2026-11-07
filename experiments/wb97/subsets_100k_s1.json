@@ -1,0 +1,47 @@
+{
+ "n_train_molecules_total": 76621,
+ "n_val_molecules": 1500,
+ "n_val_entries": 3312,
+ "tests": {
+  "test_random_eq": 8900,
+  "test_random_offeq": 9182,
+  "test_random_exc": 1449,
+  "test_scaffold_eq": 10003,
+  "test_scaffold_offeq": 10401,
+  "test_scaffold_exc": 1802,
+  "test_large_eq": 500,
+  "test_large_offeq": 498,
+  "test_large_exc": 963
+ },
+ "subsets": {
+  "1k": {
+   "molecules": 1000,
+   "train_entries": 2208,
+   "train_excmd": 176
+  },
+  "3k": {
+   "molecules": 3000,
+   "train_entries": 6624,
+   "train_excmd": 525
+  },
+  "10k": {
+   "molecules": 10000,
+   "train_entries": 22037,
+   "train_excmd": 1706
+  },
+  "30k": {
+   "molecules": 30000,
+   "train_entries": 65995,
+   "train_excmd": 4996
+  },
+  "all": {
+   "molecules": 76621,
+   "train_entries": 168587,
+   "train_excmd": 12869
+  },
+  "10k_noexc": {
+   "molecules": 10000,
+   "train_entries": 20331
+  }
+ }
+}

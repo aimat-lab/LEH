@@ -1,0 +1,24 @@
+diff --git a/mace/tools/train.py b/mace/tools/train.py
+index aa4769d..792f2d2 100644
+--- a/mace/tools/train.py
++++ b/mace/tools/train.py
+@@ -370,7 +370,8 @@ def take_step(
+     if model_type == "AutoencoderExcitedMACE":
+         centred_energy = (batch["energy"] - output["e0s"] - output["pair_energy"]).unsqueeze(-1)
+         encoded_energy = model.perm_encoder(centred_energy)
+-        decoded_energy, _ = model.perm_decoder(encoded_energy)
++        decoded_energy = model.perm_decoder(encoded_energy)  # exmlip fix: decoder returns one tensor
++        decoded_energy = decoded_energy[0] if isinstance(decoded_energy, tuple) else decoded_energy
+         decoded_energy = decoded_energy + output["e0s"] + output["pair_energy"]
+         output["encoded_energy"] = encoded_energy
+         output["decoded_energy"] = decoded_energy
+@@ -422,7 +423,8 @@ def evaluate(
+                 batch["energy"] - output["e0s"] - output["pair_energy"]
+             ).unsqueeze(-1)
+             encoded_energy = model.perm_encoder(centred_energy)
+-            decoded_energy, _ = model.perm_decoder(encoded_energy)
++            decoded_energy = model.perm_decoder(encoded_energy)  # exmlip fix: decoder returns one tensor
++            decoded_energy = decoded_energy[0] if isinstance(decoded_energy, tuple) else decoded_energy
+             decoded_energy = decoded_energy + output["e0s"] + output["pair_energy"]
+             output["encoded_energy"] = encoded_energy
+             output["decoded_energy"] = decoded_energy

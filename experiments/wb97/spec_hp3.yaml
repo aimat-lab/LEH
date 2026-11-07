@@ -1,0 +1,32 @@
+# S0 energy-weight check (user approved 2026-10-14) on the final dataset (100k + S1-sampled geometries):
+# 128 channels L1, 30k training molecules, final training settings; w_e0 10 / 100 / 300.
+outdir: experiments/wb97/runs_hp
+base:
+  data: data/wb97_all_100k_s1.pkl
+  split: experiments/wb97/split_100k_s1_sub30k.json
+  head: latent
+  head_kwargs: {k: 1}
+  n_states: 10
+  n_sup: 10
+  n_force: 3
+  dtype: float64
+  enc_kwargs: {channels: 128, max_L: 1, num_interactions: 2, r_max: 5.0}
+  w_gap: 1.0
+  w_e0: 100.0
+  w_f0: 10.0
+  w_fex: 10.0
+  ema_decay: 0.99
+  lr_schedule: cosine
+  warmup_updates: 1000
+  max_updates: 150000
+  epochs: 100000
+  patience: 100000
+  max_hours: 80.0
+  wall_hours: 7.0
+  threads: 6
+  batch_size: 16
+  lr: 0.003
+runs:
+  - {name: hp3_c128_we0_10, w_e0: 10.0}
+  - {name: hp3_c128_we0_100, w_e0: 100.0}
+  - {name: hp3_c128_we0_300, w_e0: 300.0}

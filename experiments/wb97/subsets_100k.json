@@ -1,0 +1,35 @@
+{
+ "n_train_molecules_total": 76621,
+ "n_val_molecules": 1500,
+ "n_val_entries": 3045,
+ "tests": {
+  "test_random_eq": 8900,
+  "test_random_offeq": 9182,
+  "test_scaffold_eq": 10003,
+  "test_scaffold_offeq": 10401,
+  "test_large_eq": 500,
+  "test_large_offeq": 498
+ },
+ "subsets": {
+  "1k": {
+   "molecules": 1000,
+   "train_entries": 2032
+  },
+  "3k": {
+   "molecules": 3000,
+   "train_entries": 6099
+  },
+  "10k": {
+   "molecules": 10000,
+   "train_entries": 20331
+  },
+  "30k": {
+   "molecules": 30000,
+   "train_entries": 60999
+  },
+  "all": {
+   "molecules": 76621,
+   "train_entries": 155718
+  }
+ }
+}

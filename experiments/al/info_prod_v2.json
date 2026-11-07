@@ -1,0 +1,82 @@
+{
+ "rounds": [
+  "s1r2"
+ ],
+ "n_base": 234942,
+ "n_new": 17915,
+ "n_total": 252857,
+ "stats": {
+  "s1r2_files": 18411,
+  "s1r2_failed": 3,
+  "s1r2_masked_roots": 2,
+  "dropped_no_role": 490,
+  "dropped_reference_molecule": 6,
+  "base_entries_removed_reference_molecules": 20,
+  "reference_molecules_in_base": [
+   "B10_000000307",
+   "B9_000000240",
+   "B9_010855423",
+   "B9_010931392",
+   "B9_011469050",
+   "B9_012998378",
+   "DYE_00564",
+   "DYE_00849",
+   "DYE_01183",
+   "DYE_02769",
+   "DYE_04533",
+   "LAD_00013",
+   "LAD_00284",
+   "LAD_00576",
+   "LAD_00658",
+   "LAD_00694",
+   "LAD_00742",
+   "LAD_01350"
+  ]
+ },
+ "new_by_role": {
+  "train": 13628,
+  "scaffold": 1477,
+  "random": 1580,
+  "val": 276,
+  "large": 954
+ },
+ "split_sizes": {
+  "train": 190182,
+  "val": 4585,
+  "test_random_eq": 8900,
+  "test_random_offeq": 9182,
+  "test_random_exc": 1449,
+  "test_scaffold_eq": 10003,
+  "test_scaffold_offeq": 10401,
+  "test_scaffold_exc": 1802,
+  "test_large_eq": 500,
+  "test_large_offeq": 498,
+  "test_large_exc": 963,
+  "test_dye_noS_eq": 373,
+  "test_dye_noS_offeq": 373,
+  "test_dye_S_eq": 130,
+  "test_dye_S_offeq": 129,
+  "test_lad_noS_eq": 1226,
+  "test_lad_noS_offeq": 1228,
+  "test_lad_S_eq": 164,
+  "test_lad_S_offeq": 163,
+  "test_scaffold_exc2": 1477,
+  "test_random_exc2": 1580,
+  "test_large_exc2": 954
+ },
+ "excluded_smiles": [
+  "C=CC=O",
+  "O=C1C=CNC(=O)N1",
+  "c1ccc(cc1)/C=C/c1ccccc1",
+  "c1ccc(cc1)-c1ccccc1",
+  "C=Cc1ccccc1",
+  "c1ccc(cc1)/N=N/c1ccccc1",
+  "O=C1CCCC=C1",
+  "C=C/C=C/C=C",
+  "Nc1cc[nH]c(=O)n1",
+  "O=Cc1ccccc1",
+  "O=C/C=C/c1ccccc1",
+  "CC1=N/C(=C\\c2ccc(O)cc2)C(=O)N1C",
+  "CN(C)c1ccc(C#N)cc1"
+ ]
+}

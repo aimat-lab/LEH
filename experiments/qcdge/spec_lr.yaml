@@ -1,0 +1,20 @@
+# LEH-LR on the QCDGE size-extrapolation benchmark (same settings as spec.yaml runs, epochs 150 / patience 15).
+outdir: experiments/qcdge/runs
+base:
+  data: data/qcdge_sub.pkl
+  split: experiments/qcdge/split_size.json
+  n_states: 10
+  n_sup: 6
+  dtype: float32
+  batch_size: 32
+  lr: 0.002
+  epochs: 150
+  patience: 15
+  max_hours: 6.0
+  threads: 6
+  enc_kwargs: {channels: 32, max_L: 1, num_interactions: 2, r_max: 5.0}
+runs:
+  - {name: latent_k1_osc, head: latent, head_kwargs: {k: 1, dipoles: true}, w_osc: 1.0}
+  - {name: latent_k1_lr, head: latent, head_kwargs: {k: 1, long_range: true}, w_osc: 1.0}
+  - {name: latent_k1_lr_s1, head: latent, head_kwargs: {k: 1, long_range: true}, w_osc: 1.0, seed: 1}
+  - {name: latent_k1_lr_now, head: latent, head_kwargs: {k: 1, long_range: true}, w_osc: 0.0}

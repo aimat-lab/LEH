@@ -1,0 +1,1 @@
+{"model": "OMNI-P2x fine-tuned (3 members)", "hours_predict": 0.028385788400967917, "n": {"val": 10, "test_frag_mono": 120, "test_frag_dimer": 1680}}

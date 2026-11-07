@@ -1,0 +1,37 @@
+[
+ {
+  "name": "styrene_s1",
+  "smiles": "C=Cc1ccccc1",
+  "note": "aryl C=C twist (smaller analogue of stilbene)"
+ },
+ {
+  "name": "azobenzene_s1",
+  "smiles": "c1ccc(cc1)/N=N/c1ccccc1",
+  "note": "N=N photoisomerisation, larger than training (14 heavy atoms)"
+ },
+ {
+  "name": "cyclohexenone_s1",
+  "smiles": "O=C1CCCC=C1",
+  "note": "cyclic enone, n-pi*/pi-pi*"
+ },
+ {
+  "name": "hexatriene_s1",
+  "smiles": "C=C/C=C/C=C",
+  "note": "polyene, C=C twisting"
+ },
+ {
+  "name": "cytosine_s1",
+  "smiles": "Nc1cc[nH]c(=O)n1",
+  "note": "nucleobase (validation analogue of the uracil test)"
+ },
+ {
+  "name": "benzaldehyde_s1",
+  "smiles": "O=Cc1ccccc1",
+  "note": "aromatic carbonyl"
+ },
+ {
+  "name": "cinnamaldehyde_s1",
+  "smiles": "O=C/C=C/c1ccccc1",
+  "note": "conjugated enal with aryl C=C"
+ }
+]

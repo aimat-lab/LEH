@@ -1,0 +1,9 @@
+data: data/frag_pairs.pkl
+head: vecmsani
+head_kwargs: {}
+max_epochs: 2000
+n_force: 3
+n_states: 10
+n_sup: 10
+seed: 0
+split: experiments/fragments/split_frag.json

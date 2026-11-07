@@ -1,0 +1,37 @@
+# Sampling models for the round after dataset v4 (experiments/al/make_specs.py; README.md)
+outdir: experiments/al/runs
+base:
+  data: data/wb97_prod_v4.pkl
+  split: experiments/al/split_prod_v4.json
+  head_kwargs: {}
+  n_states: 10
+  n_sup: 10
+  n_force: 3
+  dtype: float64
+  enc_kwargs: {channels: 128, max_L: 1, num_interactions: 2, r_max: 5.0}
+  w_gap: 1.0
+  w_e0: 100.0
+  w_f0: 10.0
+  w_fex: 10.0
+  ema_decay: 0.99
+  lr_schedule: cosine
+  warmup_updates: 500
+  max_updates: 60000
+  epochs: 100000
+  patience: 100000
+  max_hours: 20.0
+  wall_hours: 7.0
+  threads: 6
+  batch_size: 16
+  lr: 0.001
+runs:
+- name: sampler_v4_s0
+  seed: 0
+  init_from: experiments/al/runs/sampler_v3_s0
+  head: latent
+  head_kwargs: &id001 {k: 1, bound_on: 12.0, bound_pair: 5.0}
+- name: sampler_v4_s1
+  seed: 1
+  init_from: experiments/al/runs/sampler_v3_s1
+  head: latent
+  head_kwargs: *id001

@@ -1,0 +1,29 @@
+# Hyperparameter check (stage 1): batch size and weight EMA at a fixed budget of 200k gradient updates (MACE docs
+# heuristic). Model selection on the validation set (<=8 heavy atoms) only; test sets are not used for selection.
+outdir: experiments/qcdge/runs
+base:
+  data: data/qcdge_sub.pkl
+  split: experiments/qcdge/split_size.json
+  n_states: 10
+  n_sup: 6
+  dtype: float32
+  lr: 0.002
+  max_updates: 200000
+  ema_decay: 0.99
+  epochs: 100000
+  patience: 15
+  max_hours: 30.0         # total over chained jobs (hpc/train_chain.sh follow-ups)
+  wall_hours: 7.0         # per-job budget: checkpoint + exit 3, resumed by the follow-up chain job
+  threads: 6
+  enc_kwargs: {channels: 32, max_L: 1, num_interactions: 2, r_max: 5.0}
+runs:
+  - {name: hp_latent_b4, head: latent, head_kwargs: {k: 1}, batch_size: 4}
+  - {name: hp_latent_b8, head: latent, head_kwargs: {k: 1}, batch_size: 8}
+  - {name: hp_latent_b16, head: latent, head_kwargs: {k: 1}, batch_size: 16}
+  - {name: hp_latent_b32, head: latent, head_kwargs: {k: 1}, batch_size: 32}
+  - {name: hp_softmin_b4, head: softmin, batch_size: 4}
+  - {name: hp_softmin_b8, head: softmin, batch_size: 8}
+  - {name: hp_softmin_b16, head: softmin, batch_size: 16}
+  - {name: hp_softmin_b32, head: softmin, batch_size: 32}
+  - {name: hp_latent_b32_noema, head: latent, head_kwargs: {k: 1}, batch_size: 32, ema_decay: 0.0}
+  - {name: hp_softmin_b32_noema, head: softmin, batch_size: 32, ema_decay: 0.0}

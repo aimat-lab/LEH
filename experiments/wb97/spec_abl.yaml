@@ -1,0 +1,92 @@
+# Ablations on the final dataset (user approved 2026-10-14): 10k training molecules of the 100k + S1-sampled split,
+# final settings (128 ch L1, b16, lr 3e-3, cosine, EMA 0.99, w_e0 100, 100k updates), 3 seeds each.
+# LEH vs direct heads (sum/mean/softmin), LEH without pair coupling, 6 vs 10 supervised states, without S1 geometries.
+outdir: experiments/wb97/runs_abl
+base:
+  data: data/wb97_all_100k_s1.pkl
+  split: experiments/wb97/split_100k_s1_sub10k.json
+  head_kwargs: {}
+  n_states: 10
+  n_sup: 10
+  n_force: 3
+  dtype: float64
+  enc_kwargs: {channels: 128, max_L: 1, num_interactions: 2, r_max: 5.0}
+  w_gap: 1.0
+  w_e0: 100.0
+  w_f0: 10.0
+  w_fex: 10.0
+  ema_decay: 0.99
+  lr_schedule: cosine
+  warmup_updates: 1000
+  max_updates: 100000
+  epochs: 100000
+  patience: 100000
+  max_hours: 40.0
+  wall_hours: 7.0
+  threads: 6
+  batch_size: 16
+  lr: 0.003
+runs:
+- name: abl_leh_s0
+  seed: 0
+  head: latent
+  head_kwargs: {k: 1}
+- name: abl_leh_s1
+  seed: 1
+  head: latent
+  head_kwargs: {k: 1}
+- name: abl_leh_s2
+  seed: 2
+  head: latent
+  head_kwargs: {k: 1}
+- {name: abl_softmin_s0, seed: 0, head: softmin}
+- {name: abl_softmin_s1, seed: 1, head: softmin}
+- {name: abl_softmin_s2, seed: 2, head: softmin}
+- {name: abl_sum_s0, seed: 0, head: sum}
+- {name: abl_sum_s1, seed: 1, head: sum}
+- {name: abl_sum_s2, seed: 2, head: sum}
+- {name: abl_mean_s0, seed: 0, head: mean}
+- {name: abl_mean_s1, seed: 1, head: mean}
+- {name: abl_mean_s2, seed: 2, head: mean}
+- name: abl_leh_diag_s0
+  seed: 0
+  head: latent
+  head_kwargs: {k: 1, offdiag: false}
+- name: abl_leh_diag_s1
+  seed: 1
+  head: latent
+  head_kwargs: {k: 1, offdiag: false}
+- name: abl_leh_diag_s2
+  seed: 2
+  head: latent
+  head_kwargs: {k: 1, offdiag: false}
+- name: abl_leh_sup6_s0
+  seed: 0
+  head: latent
+  head_kwargs: {k: 1}
+  n_sup: 6
+- name: abl_leh_sup6_s1
+  seed: 1
+  head: latent
+  head_kwargs: {k: 1}
+  n_sup: 6
+- name: abl_leh_sup6_s2
+  seed: 2
+  head: latent
+  head_kwargs: {k: 1}
+  n_sup: 6
+- name: abl_leh_noexc_s0
+  seed: 0
+  head: latent
+  head_kwargs: {k: 1}
+  split: experiments/wb97/split_100k_s1_sub10k_noexc.json
+- name: abl_leh_noexc_s1
+  seed: 1
+  head: latent
+  head_kwargs: {k: 1}
+  split: experiments/wb97/split_100k_s1_sub10k_noexc.json
+- name: abl_leh_noexc_s2
+  seed: 2
+  head: latent
+  head_kwargs: {k: 1}
+  split: experiments/wb97/split_100k_s1_sub10k_noexc.json

@@ -1,0 +1,27 @@
+{
+ "stats": {
+  "files": 6047,
+  "masked_roots": 0,
+  "conn_changed": 101,
+  "failed": 1,
+  "eq_with_E0": 5047,
+  "excluded_e5": []
+ },
+ "n_entries": 11094,
+ "n_molecules_qcdge": 5047,
+ "train": 8592,
+ "val": 502,
+ "test_random": 1000,
+ "test_random_offeq": 500,
+ "test_scaffold": 8,
+ "test_large": 1000,
+ "test_large_eq": 500,
+ "test_large_offeq": 500,
+ "n_eq_extra": 19665,
+ "eq_extra_dropped_duplicates": 335,
+ "train_eqplus": 28257,
+ "eq_extra_with_E0": 19665,
+ "dE0_md_minus_eq_min": -3.064316354509174,
+ "dE0_md_minus_eq_median": 1.9570701189040847,
+ "n_dE0_negative": 16
+}

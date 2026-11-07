@@ -1,0 +1,51 @@
+{
+ "stats": {
+  "files": 123916,
+  "masked_roots": 0,
+  "conn_changed": 1729,
+  "failed": 9,
+  "eq_with_E0": 100038,
+  "excluded_e5": [
+   "B9_059317460"
+  ],
+  "dropped_below_minimum": 306,
+  "dropped_reactive_or_bad_eq": 1780,
+  "bad_eq_minima": [
+   "B10_012294701",
+   "B10_012520613",
+   "B10_015555586",
+   "B10_018965665",
+   "B10_045079478",
+   "B10_057819596",
+   "B9_006432018",
+   "B9_006480203",
+   "B9_020507432",
+   "B9_020621269",
+   "B9_045049309",
+   "B9_058399069",
+   "B9_059104945",
+   "B9_059716336",
+   "B9_060010889",
+   "B9_075089313"
+  ]
+ },
+ "n_entries": 222172,
+ "n_molecules_qcdge": 100022,
+ "train": 168587,
+ "val": 9887,
+ "test_random": 19531,
+ "test_random_offeq": 9182,
+ "test_random_exc": 1449,
+ "test_scaffold": 22206,
+ "test_large": 1961,
+ "test_large_eq": 500,
+ "test_large_offeq": 498,
+ "test_large_exc": 963,
+ "dE0_md_minus_eq_min": 0.05381835290882009,
+ "dE0_md_minus_eq_median": 1.951923742897634,
+ "n_dE0_negative": 0,
+ "test_scaffold_eq": 10003,
+ "test_scaffold_offeq": 10401,
+ "test_scaffold_exc": 1802,
+ "scaffold_holdout_molecules": 10003
+}

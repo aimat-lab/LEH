@@ -1,0 +1,11 @@
+data: data/frag_pairs.pkl
+epochs: 100
+fixed_layers: 0,4
+gap_coefficient: 0.01
+head: omnip2x_finetuned
+head_kwargs: {}
+n_force: 3
+n_states: 10
+n_sup: 10
+seed: 0
+split: experiments/fragments/split_frag.json

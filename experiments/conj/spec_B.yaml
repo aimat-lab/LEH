@@ -1,0 +1,44 @@
+# Model B (user approved 2026-10-14): final dataset + training dyes (incl. S), same settings as model A
+# (spec_main.yaml: 128 ch L1, 10 supervised states, b16, lr 3e-3, cosine, EMA 0.99, w_e0 100, 300k updates).
+# Tests: 100k tests, held-out dye scaffolds and all ladders (never trained), by S content. Control without S.
+outdir: experiments/conj/runs_B
+base:
+  data: data/wb97_all_100k_s1_conj.pkl
+  split: experiments/conj/split_B.json
+  head_kwargs: {}
+  n_states: 10
+  n_sup: 10
+  n_force: 3
+  dtype: float64
+  enc_kwargs: {channels: 128, max_L: 1, num_interactions: 2, r_max: 5.0}
+  w_gap: 1.0
+  w_e0: 100.0
+  w_f0: 10.0
+  w_fex: 10.0
+  ema_decay: 0.99
+  lr_schedule: cosine
+  warmup_updates: 1000
+  max_updates: 300000
+  epochs: 100000
+  patience: 100000
+  max_hours: 80.0
+  wall_hours: 7.0
+  threads: 6
+  batch_size: 16
+  lr: 0.003
+runs:
+- name: B_leh_s0
+  seed: 0
+  head: latent
+  head_kwargs: {k: 1}
+- name: B_leh_s1
+  seed: 1
+  head: latent
+  head_kwargs: {k: 1}
+- {name: B_softmin_s0, seed: 0, head: softmin}
+- {name: B_softmin_s1, seed: 1, head: softmin}
+- name: B_noS_leh_s0
+  seed: 0
+  split: experiments/conj/split_B_noS.json
+  head: latent
+  head_kwargs: {k: 1}

@@ -1,0 +1,1 @@
+{"status": "failed at step 569: TURBOMOLE failed at step 569: {'scf_converged': True, 'e0_consistent': True, 'egrad1_ok': False}", "step": 568, "n_frames": 569}

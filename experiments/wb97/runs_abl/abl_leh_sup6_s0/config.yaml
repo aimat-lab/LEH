@@ -1,0 +1,38 @@
+alpha_offdiag: 0.0
+batch_size: 16
+data: data/wb97_all_100k_s1.pkl
+device: null
+dtype: float64
+ema_decay: 0.99
+enc_kwargs:
+  channels: 128
+  max_L: 1
+  num_interactions: 2
+  r_max: 5.0
+epochs: 100000
+eval_batch_size: 128
+freeze_e_ref: false
+head: latent
+head_kwargs:
+  k: 1
+lr: 0.003
+lr_min_frac: 0.01
+lr_schedule: cosine
+max_hours: 40.0
+max_train: null
+max_updates: 100000
+n_force: 3
+n_states: 10
+n_sup: 6
+out: experiments/wb97/runs_abl/abl_leh_sup6_s0
+patience: 100000
+seed: 0
+split: experiments/wb97/split_100k_s1_sub10k.json
+threads: 4
+w_e0: 100.0
+w_f0: 10.0
+w_fex: 10.0
+w_gap: 1.0
+w_osc: 0.0
+wall_hours: 46.5
+warmup_updates: 1000

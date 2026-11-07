@@ -1,0 +1,72 @@
+# QCDGE size-extrapolation benchmark rerun with the final settings (user request 2026-10-18): train/val <= 8 heavy
+# atoms (QM9 part of QCDGE), test 9 (QM9) and 10 (GDB-11) heavy atoms + novel-scaffold subsets; random-split control.
+# Spectra only (QCDGE minima, 10 singlets, TD-wB97X-D/6-31G*), 10 supervised states; encoder and optimiser as in the
+# main benchmark (128 ch L1, b16, lr 3e-3, cosine, EMA 0.99, float64, 100k updates). leh_osc: transition dipoles from
+# the eigenvectors + oscillator-strength loss (QCDGE f), to evaluate the oscillator-strength variant with final settings.
+outdir: experiments/qcdge/runs_final
+base:
+  data: data/qcdge_sub.pkl
+  split: experiments/qcdge/split_size.json
+  n_states: 10
+  n_sup: 10
+  dtype: float64
+  enc_kwargs: {channels: 128, max_L: 1, num_interactions: 2, r_max: 5.0}
+  head_kwargs: {}
+  w_gap: 1.0
+  w_e0: 0.0
+  w_f0: 0.0
+  w_fex: 0.0
+  n_force: 0
+  ema_decay: 0.99
+  lr_schedule: cosine
+  warmup_updates: 1000
+  max_updates: 100000
+  epochs: 100000
+  patience: 100000
+  max_hours: 40.0
+  wall_hours: 7.0
+  threads: 6
+  batch_size: 16
+  lr: 0.003
+runs:
+- name: q_leh_s0
+  seed: 0
+  head: latent
+  head_kwargs: {k: 1}
+- name: q_leh_s1
+  seed: 1
+  head: latent
+  head_kwargs: {k: 1}
+- name: q_leh_s2
+  seed: 2
+  head: latent
+  head_kwargs: {k: 1}
+- {name: q_softmin_s0, seed: 0, head: softmin}
+- {name: q_softmin_s1, seed: 1, head: softmin}
+- {name: q_softmin_s2, seed: 2, head: softmin}
+- {name: q_sum_s0, seed: 0, head: sum}
+- {name: q_sum_s1, seed: 1, head: sum}
+- {name: q_mean_s0, seed: 0, head: mean}
+- {name: q_mean_s1, seed: 1, head: mean}
+- name: q_rand_leh_s0
+  seed: 0
+  head: latent
+  head_kwargs: {k: 1}
+  split: experiments/qcdge/split_rand.json
+- name: q_rand_leh_s1
+  seed: 1
+  head: latent
+  head_kwargs: {k: 1}
+  split: experiments/qcdge/split_rand.json
+- {name: q_rand_softmin_s0, seed: 0, head: softmin, split: experiments/qcdge/split_rand.json}
+- {name: q_rand_softmin_s1, seed: 1, head: softmin, split: experiments/qcdge/split_rand.json}
+- name: q_leh_osc_s0
+  seed: 0
+  head: latent
+  head_kwargs: {k: 1, dipoles: true}
+  w_osc: 1.0
+- name: q_leh_osc_s1
+  seed: 1
+  head: latent
+  head_kwargs: {k: 1, dipoles: true}
+  w_osc: 1.0

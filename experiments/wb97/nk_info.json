@@ -1,0 +1,41 @@
+{
+ "n_pool": 75351,
+ "n_pool3": 3746,
+ "configs": {
+  "G20k_K1": {
+   "molecules": 20000,
+   "K": 1,
+   "geometries": 20000,
+   "eq": 10020,
+   "offeq": 9980
+  },
+  "G20k_K2": {
+   "molecules": 10000,
+   "K": 2,
+   "geometries": 20000,
+   "eq": 10000,
+   "offeq": 10000
+  },
+  "G10k_K1": {
+   "molecules": 10000,
+   "K": 1,
+   "geometries": 10000,
+   "eq": 5031,
+   "offeq": 4969
+  },
+  "G10k_K2": {
+   "molecules": 5000,
+   "K": 2,
+   "geometries": 10000,
+   "eq": 5000,
+   "offeq": 5000
+  },
+  "G10k_K3": {
+   "molecules": 3333,
+   "K": 3,
+   "geometries": 9999,
+   "eq": 3333,
+   "offeq": 6666
+  }
+ }
+}

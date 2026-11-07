@@ -1,0 +1,41 @@
+{
+ "stats": {
+  "files": 31093,
+  "masked_roots": 0,
+  "conn_changed": 510,
+  "failed": 3,
+  "eq_with_E0": 25046,
+  "excluded_e5": [],
+  "dropped_reactive_or_bad_eq": 516,
+  "bad_eq_minima": [
+   "B10_045079478",
+   "B10_057819596",
+   "B9_006432018",
+   "B9_020507432",
+   "B9_020621269",
+   "B9_059104945"
+  ]
+ },
+ "n_entries": 55623,
+ "n_molecules_qcdge": 25043,
+ "train": 41680,
+ "val": 2487,
+ "test_random": 4897,
+ "test_random_offeq": 2648,
+ "test_scaffold": 5561,
+ "test_large": 998,
+ "test_large_eq": 500,
+ "test_large_offeq": 498,
+ "dE0_md_minus_eq_min": -4.3004482337019,
+ "dE0_md_minus_eq_median": 1.9472631442840793,
+ "n_dE0_negative": 8,
+ "scaffold_holdout": {
+  "file": "experiments/wb97/scaffold_holdout.json",
+  "n_heldout_molecules": 2535,
+  "n_molecules_with_scaffold": 25040,
+  "n_scaffold_failed": 459,
+  "n_acyclic": 6216
+ },
+ "test_scaffold_eq": 2535,
+ "test_scaffold_offeq": 3026
+}

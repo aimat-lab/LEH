@@ -1,0 +1,12 @@
+[
+ {
+  "name": "hbdi_s1",
+  "smiles": "CC1=N/C(=C\\c2ccc(O)cc2)C(=O)N1C",
+  "note": "GFP chromophore (Z-p-HBDI), exocyclic C=C twist, 15 heavy atoms"
+ },
+ {
+  "name": "dmabn_s1",
+  "smiles": "CN(C)c1ccc(C#N)cc1",
+  "note": "DMABN, twisted intramolecular charge transfer, 11 heavy atoms"
+ }
+]

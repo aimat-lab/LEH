@@ -1,0 +1,39 @@
+# Control for the X-MACE comparison (2026-10-16): LEH trained on exactly the labels X-MACE sees -- S0-S3 energies
+# (n_sup 3 instead of 10) and forces only on frames with S0-S3 forces (X-MACE masks forces per frame, so the 45 %
+# equilibrium frames lose their S0 forces) -- otherwise identical to main_leh_30k (30k molecules, 150k updates).
+# Compare with main_leh_30k_s{0,1} (all labels) and xmace128_sub30k on the same test sets.
+outdir: experiments/wb97/runs_xlab
+base:
+  data: data/wb97_all_100k_s1.pkl
+  split: experiments/wb97/split_100k_s1_sub30k.json
+  head_kwargs: {}
+  n_states: 10
+  n_sup: 3
+  n_force: 3
+  dtype: float64
+  enc_kwargs: {channels: 128, max_L: 1, num_interactions: 2, r_max: 5.0}
+  w_gap: 1.0
+  w_e0: 100.0
+  w_f0: 10.0
+  w_fex: 10.0
+  ema_decay: 0.99
+  lr_schedule: cosine
+  warmup_updates: 1000
+  max_updates: 150000
+  epochs: 100000
+  patience: 100000
+  max_hours: 80.0
+  wall_hours: 7.0
+  threads: 6
+  batch_size: 16
+  lr: 0.003
+  force_frames_only: true
+runs:
+- name: xlab_leh_30k_s0
+  seed: 0
+  head: latent
+  head_kwargs: {k: 1}
+- name: xlab_leh_30k_s1
+  seed: 1
+  head: latent
+  head_kwargs: {k: 1}

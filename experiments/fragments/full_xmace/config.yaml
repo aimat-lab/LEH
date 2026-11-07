@@ -1,0 +1,7 @@
+data: data/frag_pairs.pkl
+head: xmace
+head_kwargs: {}
+n_force: 3
+n_states: 10
+n_sup: 3
+split: experiments/fragments/split_frag.json

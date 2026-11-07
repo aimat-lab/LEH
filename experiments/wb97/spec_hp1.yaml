@@ -1,0 +1,44 @@
+# Hyperparameter stage 1 on the final dataset (user request 2026-10-12): training setup for LEH (latent k=1).
+# 10k training molecules of the final 100k split (nested subset, experiments/wb97/make_subsets.py); selection on the
+# shared 1500-molecule validation subset only. Fixed budget of 100k updates, cosine schedule with 1k warm-up.
+# Grid: batch {4, 8, 32} x peak lr {1e-3, 3e-3, 1e-2}; controls at b8/lr 3e-3: no EMA, old plateau schedule,
+# frozen per-element E0 references, 10x E0 loss weight.
+outdir: experiments/wb97/runs_hp
+base:
+  data: data/wb97_all_100k.pkl
+  split: experiments/wb97/split_100k_sub10k.json
+  head: latent
+  head_kwargs: {k: 1}
+  n_states: 10
+  n_sup: 10
+  n_force: 3
+  dtype: float64
+  enc_kwargs: {channels: 32, max_L: 1, num_interactions: 2, r_max: 5.0}
+  w_gap: 1.0
+  w_e0: 10.0
+  w_f0: 10.0
+  w_fex: 10.0
+  ema_decay: 0.99
+  lr_schedule: cosine
+  warmup_updates: 1000
+  max_updates: 100000
+  epochs: 100000
+  patience: 100000
+  max_hours: 40.0
+  wall_hours: 7.0
+  threads: 6
+  batch_size: 8
+  lr: 0.003
+runs:
+  - {name: hp1_b8_lr1e-3, batch_size: 8, lr: 0.001}
+  - {name: hp1_b8_lr3e-3, batch_size: 8, lr: 0.003}
+  - {name: hp1_b8_lr1e-2, batch_size: 8, lr: 0.01}
+  - {name: hp1_b4_lr1e-3, batch_size: 4, lr: 0.001}
+  - {name: hp1_b32_lr1e-3, batch_size: 32, lr: 0.001}
+  - {name: hp1_b32_lr3e-3, batch_size: 32, lr: 0.003}
+  - {name: hp1_b32_lr1e-2, batch_size: 32, lr: 0.01}
+  - {name: hp1_b4_lr3e-3, batch_size: 4, lr: 0.003}
+  - {name: hp1_b8_lr3e-3_noema, ema_decay: 0.0}
+  - {name: hp1_b8_lr3e-3_plateau, lr_schedule: plateau, patience: 25}
+  - {name: hp1_b8_lr3e-3_e0frozen, freeze_e_ref: true}
+  - {name: hp1_b8_lr3e-3_we0x10, w_e0: 100.0}

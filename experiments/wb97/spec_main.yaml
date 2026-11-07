@@ -1,0 +1,111 @@
+# Model A main runs + learning curves (user approved 2026-10-14), final settings: 128 ch L1, 10 supervised states,
+# b16, lr 3e-3, cosine, EMA 0.99, w_e0 100 (S0-weight check), data 100k + S1-sampled geometries.
+# Update budget: 100k (1k/3k/10k molecules), 150k (30k), 300k (all). Reused with identical settings:
+# 10k = runs_abl/abl_{leh,softmin}_s{0,1,2}; 30k LEH seed 0 = runs_hp/hp3_c128_we0_100.
+outdir: experiments/wb97/runs_main
+base:
+  data: data/wb97_all_100k_s1.pkl
+  split: experiments/wb97/split_100k_s1_sub30k.json
+  head_kwargs: {}
+  n_states: 10
+  n_sup: 10
+  n_force: 3
+  dtype: float64
+  enc_kwargs: {channels: 128, max_L: 1, num_interactions: 2, r_max: 5.0}
+  w_gap: 1.0
+  w_e0: 100.0
+  w_f0: 10.0
+  w_fex: 10.0
+  ema_decay: 0.99
+  lr_schedule: cosine
+  warmup_updates: 1000
+  max_updates: 150000
+  epochs: 100000
+  patience: 100000
+  max_hours: 80.0
+  wall_hours: 7.0
+  threads: 6
+  batch_size: 16
+  lr: 0.003
+runs:
+- name: main_leh_1k_s0
+  seed: 0
+  split: experiments/wb97/split_100k_s1_sub1k.json
+  max_updates: 100000
+  head: latent
+  head_kwargs: {k: 1}
+- name: main_leh_1k_s1
+  seed: 1
+  split: experiments/wb97/split_100k_s1_sub1k.json
+  max_updates: 100000
+  head: latent
+  head_kwargs: {k: 1}
+- name: main_leh_1k_s2
+  seed: 2
+  split: experiments/wb97/split_100k_s1_sub1k.json
+  max_updates: 100000
+  head: latent
+  head_kwargs: {k: 1}
+- {name: main_softmin_1k_s0, seed: 0, split: experiments/wb97/split_100k_s1_sub1k.json,
+  max_updates: 100000, head: softmin}
+- {name: main_softmin_1k_s1, seed: 1, split: experiments/wb97/split_100k_s1_sub1k.json,
+  max_updates: 100000, head: softmin}
+- {name: main_softmin_1k_s2, seed: 2, split: experiments/wb97/split_100k_s1_sub1k.json,
+  max_updates: 100000, head: softmin}
+- name: main_leh_3k_s0
+  seed: 0
+  split: experiments/wb97/split_100k_s1_sub3k.json
+  max_updates: 100000
+  head: latent
+  head_kwargs: {k: 1}
+- name: main_leh_3k_s1
+  seed: 1
+  split: experiments/wb97/split_100k_s1_sub3k.json
+  max_updates: 100000
+  head: latent
+  head_kwargs: {k: 1}
+- name: main_leh_3k_s2
+  seed: 2
+  split: experiments/wb97/split_100k_s1_sub3k.json
+  max_updates: 100000
+  head: latent
+  head_kwargs: {k: 1}
+- {name: main_softmin_3k_s0, seed: 0, split: experiments/wb97/split_100k_s1_sub3k.json,
+  max_updates: 100000, head: softmin}
+- {name: main_softmin_3k_s1, seed: 1, split: experiments/wb97/split_100k_s1_sub3k.json,
+  max_updates: 100000, head: softmin}
+- {name: main_softmin_3k_s2, seed: 2, split: experiments/wb97/split_100k_s1_sub3k.json,
+  max_updates: 100000, head: softmin}
+- name: main_leh_30k_s1
+  seed: 1
+  split: experiments/wb97/split_100k_s1_sub30k.json
+  max_updates: 150000
+  head: latent
+  head_kwargs: {k: 1}
+- {name: main_softmin_30k_s0, seed: 0, split: experiments/wb97/split_100k_s1_sub30k.json,
+  max_updates: 150000, head: softmin}
+- {name: main_softmin_30k_s1, seed: 1, split: experiments/wb97/split_100k_s1_sub30k.json,
+  max_updates: 150000, head: softmin}
+- name: main_leh_all_s0
+  seed: 0
+  split: experiments/wb97/split_100k_s1_suball.json
+  max_updates: 300000
+  head: latent
+  head_kwargs: {k: 1}
+- name: main_leh_all_s1
+  seed: 1
+  split: experiments/wb97/split_100k_s1_suball.json
+  max_updates: 300000
+  head: latent
+  head_kwargs: {k: 1}
+- {name: main_softmin_all_s0, seed: 0, split: experiments/wb97/split_100k_s1_suball.json,
+  max_updates: 300000, head: softmin}
+- {name: main_softmin_all_s1, seed: 1, split: experiments/wb97/split_100k_s1_suball.json,
+  max_updates: 300000, head: softmin}
+- name: main_leh_L2_all_s0
+  seed: 0
+  split: experiments/wb97/split_100k_s1_suball.json
+  max_updates: 300000
+  enc_kwargs: {channels: 128, max_L: 2, num_interactions: 2, r_max: 5.0}
+  head: latent
+  head_kwargs: {k: 1}

@@ -1,0 +1,39 @@
+outdir: experiments/bench/runs
+base:
+  data: data/qcdge_sub.pkl
+  split: experiments/qcdge/split_size.json
+  n_states: 10
+  n_sup: 6
+  dtype: float32
+  batch_size: 32
+  lr: 0.002
+  epochs: 60
+  patience: 8
+  max_hours: 1.6
+  threads: 2
+  enc_kwargs: {channels: 32, max_L: 1, num_interactions: 2, r_max: 5.0}
+runs:
+  # main comparison (size split)
+  - {name: latent_k1, head: latent, head_kwargs: {k: 1}}
+  - {name: direct_sum, head: sum}
+  - {name: direct_softmin, head: softmin}
+  - {name: direct_mean, head: mean}
+  # ablations
+  - {name: latent_diag, head: latent, head_kwargs: {k: 1, offdiag: false}}
+  - {name: latent_k2_heavy, head: latent, head_kwargs: {k: 2, centers: heavy}}
+  - {name: latent_k2, head: latent, head_kwargs: {k: 2}}
+  - {name: latent_k1_heavy, head: latent, head_kwargs: {k: 1, centers: heavy}}
+  - {name: latent_k1_sup3, head: latent, head_kwargs: {k: 1}, n_sup: 3}
+  - {name: latent_k1_sup10, head: latent, head_kwargs: {k: 1}, n_sup: 10}
+  - {name: latent_k1_alpha, head: latent, head_kwargs: {k: 1}, alpha_offdiag: 0.05}
+  - {name: latent_k1_rc3, head: latent, head_kwargs: {k: 1, r_cut: 3.0}}
+  - {name: direct_softmin_sup10, head: softmin, n_sup: 10}
+  # in-distribution control (random split, same training-set size)
+  - {name: rand_latent_k1, head: latent, head_kwargs: {k: 1}, split: experiments/qcdge/split_rand.json}
+  - {name: rand_direct_sum, head: sum, split: experiments/qcdge/split_rand.json}
+  - {name: rand_direct_softmin, head: softmin, split: experiments/qcdge/split_rand.json}
+  # seeds for the main comparison
+  - {name: latent_k1_s1, head: latent, head_kwargs: {k: 1}, seed: 1}
+  - {name: direct_sum_s1, head: sum, seed: 1}
+  - {name: direct_softmin_s1, head: softmin, seed: 1}
+  - {name: direct_mean_s1, head: mean, seed: 1}

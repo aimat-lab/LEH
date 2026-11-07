@@ -1,0 +1,30 @@
+batch_size: 16
+data: data/qcdge_sub.pkl
+dtype: float64
+ema_decay: 0.99
+enc_kwargs:
+  channels: 128
+  max_L: 1
+  num_interactions: 2
+  r_max: 5.0
+epochs: 100000
+head: softmin
+head_kwargs: {}
+lr: 0.003
+lr_schedule: cosine
+max_hours: 40.0
+max_updates: 100000
+n_force: 0
+n_states: 10
+n_sup: 10
+out: experiments/qcdge/runs_final/q_softmin_s2
+patience: 100000
+seed: 2
+split: experiments/qcdge/split_size.json
+threads: 6
+w_e0: 0.0
+w_f0: 0.0
+w_fex: 0.0
+w_gap: 1.0
+wall_hours: 7.0
+warmup_updates: 1000

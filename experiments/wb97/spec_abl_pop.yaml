@@ -1,0 +1,43 @@
+# Population loss (user request 2026-11-04): the 10k LEH ablation (spec_abl.yaml, abl_leh_s0-2) plus a loss that pulls
+# the per-atom weights of the S1-S3 eigenvectors towards the TD-DFT excitation populations (hole + electron)/2,
+# hydrogens folded onto heavy atoms (train.py w_pop; labels experiments/eigvec/tddft/pop_labels.py from the escf runs on
+# all 10k training and validation geometries). w_pop = 1: the term starts at 0.14-0.20 per state for the abl_leh models,
+# comparable to their gap loss. Checks (seed 0): w_pop = 0.1, and target "min" (closer of hole and electron, keeps the
+# hole/electron choice free). Same settings and seeds as abl_leh_s0-2 otherwise; checkpoint selection on the same
+# validation loss (the population term is training-only).
+outdir: experiments/wb97/runs_abl
+base:
+  data: data/wb97_all_100k_s1.pkl
+  split: experiments/wb97/split_100k_s1_sub10k.json
+  head: latent
+  head_kwargs: {k: 1}
+  n_states: 10
+  n_sup: 10
+  n_force: 3
+  dtype: float64
+  enc_kwargs: {channels: 128, max_L: 1, num_interactions: 2, r_max: 5.0}
+  w_gap: 1.0
+  w_e0: 100.0
+  w_f0: 10.0
+  w_fex: 10.0
+  ema_decay: 0.99
+  lr_schedule: cosine
+  warmup_updates: 1000
+  max_updates: 100000
+  epochs: 100000
+  patience: 100000
+  max_hours: 40.0
+  wall_hours: 7.0
+  threads: 6
+  batch_size: 16
+  lr: 0.003
+  w_pop: 1.0
+  n_pop: 3
+  pop_target: avg
+  pop_labels: experiments/eigvec/tddft/pop_labels_abl10k.pkl
+runs:
+- {name: abl_leh_pop_s0, seed: 0}
+- {name: abl_leh_pop_s1, seed: 1}
+- {name: abl_leh_pop_s2, seed: 2}
+- {name: abl_leh_pop01_s0, seed: 0, w_pop: 0.1}
+- {name: abl_leh_popmin_s0, seed: 0, pop_target: min}

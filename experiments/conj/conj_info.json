@@ -1,0 +1,88 @@
+{
+ "stats": {
+  "files": 12818,
+  "masked_roots": 20,
+  "conn_changed": 48,
+  "failed": 18,
+  "n_loaded": 12818,
+  "dropped_conn_changed": 48,
+  "dropped_below_minimum": 0,
+  "n_kept": 12770
+ },
+ "n_base": 222172,
+ "n_conj": 12770,
+ "n_dye_molecules": 5018,
+ "n_dye_scaffold_families": 2187,
+ "dye_eligible_families": 2184,
+ "dye_roles": {
+  "train": 4013,
+  "test": 503,
+  "val": 502
+ },
+ "dye_roles_with_S": {
+  "train": 900,
+  "test": 130,
+  "val": 113
+ },
+ "n_ladder_molecules": 1393,
+ "n_ladder_S": 164,
+ "splits": {
+  "split_B": {
+   "train": 176572,
+   "val": 4311,
+   "test_random_eq": 8900,
+   "test_random_offeq": 9182,
+   "test_random_exc": 1449,
+   "test_scaffold_eq": 10003,
+   "test_scaffold_offeq": 10401,
+   "test_scaffold_exc": 1802,
+   "test_large_eq": 500,
+   "test_large_offeq": 498,
+   "test_large_exc": 963,
+   "test_dye_noS_eq": 373,
+   "test_dye_noS_offeq": 373,
+   "test_dye_S_eq": 130,
+   "test_dye_S_offeq": 129,
+   "test_lad_noS_eq": 1226,
+   "test_lad_noS_offeq": 1228,
+   "test_lad_S_eq": 164,
+   "test_lad_S_offeq": 163
+  },
+  "split_B_noS": {
+   "train": 174783,
+   "val": 4090,
+   "test_random_eq": 8900,
+   "test_random_offeq": 9182,
+   "test_random_exc": 1449,
+   "test_scaffold_eq": 10003,
+   "test_scaffold_offeq": 10401,
+   "test_scaffold_exc": 1802,
+   "test_large_eq": 500,
+   "test_large_offeq": 498,
+   "test_large_exc": 963,
+   "test_dye_noS_eq": 373,
+   "test_dye_noS_offeq": 373,
+   "test_lad_noS_eq": 1226,
+   "test_lad_noS_offeq": 1228
+  },
+  "split_A_conj": {
+   "train": 168587,
+   "val": 3312,
+   "test_random_eq": 8900,
+   "test_random_offeq": 9182,
+   "test_random_exc": 1449,
+   "test_scaffold_eq": 10003,
+   "test_scaffold_offeq": 10401,
+   "test_scaffold_exc": 1802,
+   "test_large_eq": 500,
+   "test_large_offeq": 498,
+   "test_large_exc": 963,
+   "test_dye_noS_eq": 373,
+   "test_dye_noS_offeq": 373,
+   "test_lad_noS_eq": 1226,
+   "test_lad_noS_offeq": 1228,
+   "test_dyeall_noS_eq": 3875,
+   "test_dyeall_noS_offeq": 3845
+  }
+ }
+}

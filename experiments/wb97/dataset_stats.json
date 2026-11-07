@@ -1,0 +1,41 @@
+{
+ "n_entries_v1": 222172,
+ "n_molecules_v1": 100522,
+ "n_molecules_used": 97524,
+ "n_geometries_used": 215597,
+ "kinds": {
+  "offeq": 103820,
+  "qcdge_eq": 100021,
+  "eq": 500,
+  "excmd": 17831
+ },
+ "n_train_molecules": 76621,
+ "n_train_geometries": 168587,
+ "n_train_excmd": 12869,
+ "n_val_molecules": 1500,
+ "n_val_geometries": 3312,
+ "tests": {
+  "test_random_eq": 8900,
+  "test_random_offeq": 9182,
+  "test_random_exc": 1449,
+  "test_scaffold_eq": 10003,
+  "test_scaffold_offeq": 10401,
+  "test_scaffold_exc": 1802,
+  "test_large_eq": 500,
+  "test_large_offeq": 498,
+  "test_large_exc": 963
+ },
+ "n_zinc_molecules": 500,
+ "n_conj_entries": 12770,
+ "n_dyes": 5018,
+ "n_ladders": 1393,
+ "conj_tests": {
+  "test_dye_noS_eq": 373,
+  "test_dye_noS_offeq": 373,
+  "test_lad_noS_eq": 1226,
+  "test_lad_noS_offeq": 1228,
+  "test_dyeall_noS_eq": 3875,
+  "test_dyeall_noS_offeq": 3845
+ },
+ "max_heavy_conj": 30
+}

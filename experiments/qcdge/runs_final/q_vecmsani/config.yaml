@@ -1,0 +1,9 @@
+data: data/qcdge_sub.pkl
+head: vecmsani
+head_kwargs: {}
+max_epochs: 3000
+n_force: 0
+n_states: 10
+n_sup: 10
+seed: 0
+split: experiments/qcdge/split_size.json

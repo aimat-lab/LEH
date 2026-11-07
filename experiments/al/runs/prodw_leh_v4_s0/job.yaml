@@ -1,0 +1,47 @@
+batch_size: 16
+data: data/wb97_prod_v4.pkl
+dtype: float64
+ema_decay: 0.99
+enc_kwargs:
+  channels: 128
+  max_L: 1
+  num_interactions: 2
+  r_max: 5.0
+epochs: 100000
+gap_state_w:
+- 4.0
+- 2.0
+- 2.0
+- 1.0
+- 1.0
+- 1.0
+- 1.0
+- 1.0
+- 1.0
+- 1.0
+head: latent
+head_kwargs:
+  bound_on: 12.0
+  bound_pair: 5.0
+  k: 1
+lowgap_floor: 0.5
+lowgap_tau: 1.0
+lr: 0.003
+lr_schedule: cosine
+max_hours: 80.0
+max_updates: 300000
+n_force: 3
+n_states: 10
+n_sup: 10
+out: experiments/al/runs/prodw_leh_v4_s0
+patience: 100000
+seed: 0
+split: experiments/al/split_prod_v4.json
+threads: 6
+w_e0: 100.0
+w_f0: 10.0
+w_fex: 10.0
+w_gap: 1.0
+w_lowgap: 4.0
+wall_hours: 7.0
+warmup_updates: 1000

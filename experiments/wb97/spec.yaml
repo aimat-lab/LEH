@@ -1,0 +1,35 @@
+outdir: experiments/wb97/runs
+base:
+  data: data/wb97_all.pkl
+  split: experiments/wb97/split.json
+  n_states: 10
+  n_sup: 10
+  n_force: 3
+  w_gap: 1.0
+  w_e0: 10.0
+  w_f0: 10.0
+  w_fex: 10.0
+  dtype: float64
+  batch_size: 16
+  lr: 0.002
+  epochs: 300
+  patience: 25
+  max_hours: 7.0
+  threads: 6
+  enc_kwargs: {channels: 32, max_L: 1, num_interactions: 2, r_max: 5.0}
+runs:
+  - {name: latent_k1, head: latent, head_kwargs: {k: 1}}
+  - {name: direct_sum, head: sum}
+  - {name: direct_softmin, head: softmin}
+  - {name: direct_mean, head: mean}
+  - {name: latent_diag, head: latent, head_kwargs: {k: 1, offdiag: false}}
+  - {name: latent_k2_heavy, head: latent, head_kwargs: {k: 2, centers: heavy}}
+  - {name: latent_k1_s1, head: latent, head_kwargs: {k: 1}, seed: 1}
+  - {name: direct_softmin_s1, head: softmin, seed: 1}
+  # + 20k additional QCDGE equilibrium spectra (gaps only) in training
+  - {name: latent_k1_eqplus, head: latent, head_kwargs: {k: 1}, split: experiments/wb97/split_eqplus.json}
+  - {name: direct_softmin_eqplus, head: softmin, split: experiments/wb97/split_eqplus.json}
+  # LEH-LR (long-range transition-dipole coupling) and dipoles-only; oscillator strengths from QCDGE (eq entries)
+  # and from the new TDDFT runs; data with osc labels: wb97_all_osc5k.pkl / split_osc5k.json
+  - {name: latent_k1_lr, head: latent, head_kwargs: {k: 1, long_range: true}, w_osc: 1.0, data: data/wb97_all_osc5k.pkl, split: experiments/wb97/split_osc5k.json}
+  - {name: latent_k1_osc, head: latent, head_kwargs: {k: 1, dipoles: true}, w_osc: 1.0, data: data/wb97_all_osc5k.pkl, split: experiments/wb97/split_osc5k.json}

@@ -143,7 +143,7 @@ axA.text(1.0, 0.97, "molecules similar to the training molecules\n(≤ 10 heavy 
          color=fs.INK2, ha="center", va="top", transform=axA.get_xaxis_transform())
 axA.set_yscale("log"); axA.set_ylabel("Mean absolute error of\nS$_1$–S$_3$ energies (eV)"); logticks(axA, [0.15, 0.2, 0.3, 0.5, 1, 2, 5])
 hA, lA = axA.get_legend_handles_labels()
-fig.legend(hA, lA, loc="upper center", ncol=5, fontsize=6, handletextpad=0.3, columnspacing=1.5, bbox_to_anchor=(0.5, 0.97),
+fig.legend(hA, lA, loc="upper center", ncol=5, fontsize=6, handletextpad=0.3, columnspacing=1.5, bbox_to_anchor=(0.5, 0.925),
            frameon=False)
 
 

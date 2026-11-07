@@ -183,8 +183,10 @@ def spectrum_panel(ax, kind, letter):
     ax.set_ylabel("Excitation energy (eV)")
 
 
-fig = plt.figure(figsize=(7.2, 6.3))
-gs = fig.add_gridspec(3, 2, height_ratios=[1.35, 0.3, 1.0], hspace=0.42, wspace=0.26)
+fig = plt.figure(figsize=(7.2, 6.05))
+outer = fig.add_gridspec(2, 1, height_ratios=[2.02, 1.0], hspace=0.13)
+gs = outer[0].subgridspec(2, 2, height_ratios=[1.35, 0.3], hspace=0.45, wspace=0.26)
+gs_cd = outer[1].subgridspec(1, 2, wspace=0.26)
 axa, axb = fig.add_subplot(gs[0, 0]), fig.add_subplot(gs[0, 1])
 for ax, kind, letter in ((axa, "AB", "a"), (axb, "AA", "b")):
     spectrum_panel(ax, kind, letter)
@@ -229,7 +231,7 @@ def logticks(ax, ticks):
     ax.yaxis.set_major_formatter(FuncFormatter(lambda v, _: f"{v:g}")); ax.yaxis.set_minor_locator(NullLocator())
 
 
-axc = fig.add_subplot(gs[2, 0])
+axc = fig.add_subplot(gs_cd[0, 0])
 NUM = {}
 for m in MODELS_CD:
     st = dict(fs.STYLE.get(m, {"marker": "o"}))
@@ -247,7 +249,7 @@ axc.set_ylim(0.1, 40)
 logticks(axc, [0.1, 0.2, 0.3, 0.5, 1, 2, 5, 10])
 axc.legend(loc="center", fontsize=6, ncol=2, handlelength=1.6, bbox_to_anchor=(0.55, 0.5))
 
-axd = fig.add_subplot(gs[2, 1])
+axd = fig.add_subplot(gs_cd[0, 1])
 GROUPS = [("S$_1$", 0, 1), ("S$_2$–S$_3$", 1, 3), ("S$_4$–S$_6$", 3, 6)]
 off = {m: (j - (len(MODELS_CD) - 1) / 2) * 0.15 for j, m in enumerate(MODELS_CD)}
 for m in MODELS_CD:

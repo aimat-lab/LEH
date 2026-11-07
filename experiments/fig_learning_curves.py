@@ -105,8 +105,11 @@ def make(models, with_zs, name):
     order = [fs.LABEL[m] for m in models] + [ZS_LABEL]
     hl = sorted(zip(handles, labels), key=lambda t: order.index(t[1]) if t[1] in order else 99)
     handles, labels = [h for h, _ in hl], [l for _, l in hl]
-    fig.legend(handles, labels, loc="upper center", ncol=4, bbox_to_anchor=(0.5, 1.07), handlelength=2.6, columnspacing=1.0,
-               fontsize=6)
+    if with_zs:
+        fig.legend(handles, labels, loc="upper center", ncol=4, bbox_to_anchor=(0.5, 1.07), handlelength=2.6,
+                   columnspacing=1.0, fontsize=6)
+    else:  # main figure: legend in the empty upper part of panel a
+        axes[0, 0].legend(handles, labels, loc="upper right", ncol=2, handlelength=2.6, columnspacing=1.0, fontsize=6)
     fig.tight_layout(); fig.subplots_adjust(hspace=0.22)
     fs.panel_labels(fig, [(axes[0, 0], "a"), (axes[0, 1], "b"), (axes[1, 0], "c"), (axes[1, 1], "d")])
     out = ROOT / f"paper/figs/{name}"

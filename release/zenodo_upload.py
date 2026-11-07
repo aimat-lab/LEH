@@ -10,7 +10,8 @@ deposit:actions; pass it in the environment variable ZENODO_TOKEN (never on the 
   --sandbox uses sandbox.zenodo.org (separate account and token) for a test run.
 
 The first call reserves the DOI (printed; also shown in the draft) so that it can go into the paper before publishing.
-Files already in the draft with the same name and size are skipped, so an interrupted upload can simply be rerun.
+Files already in the draft with the same name and checksum are skipped, so an interrupted upload can simply be rerun;
+changed files with the same name (e.g. an updated README.md) replace the old ones.
 """
 import argparse
 import hashlib
@@ -62,8 +63,12 @@ def main():
         if not p.is_file():
             continue
         size = p.stat().st_size
-        if p.name in existing and existing[p.name]["filesize"] == size:
+        old = existing.get(p.name)
+        if old and old["filesize"] == size and old["checksum"].split(":")[-1] == md5(p):
             print("skip (already uploaded)", p.name); continue
+        if old:  # changed file (e.g. an updated README): replace it
+            print("replace", p.name, flush=True)
+            s.delete(f"{api}/deposit/depositions/{dep['id']}/files/{old['id']}").raise_for_status()
         print(f"upload {p.name} ({size / 1e9:.2f} GB)", flush=True)
         with open(p, "rb") as f:
             r = s.put(f"{bucket}/{p.name}", data=f)

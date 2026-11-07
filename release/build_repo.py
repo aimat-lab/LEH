@@ -28,7 +28,8 @@ SUBS = [(r"/pfs/work9/workspace/scratch/ka_bp4935-aimat04/transferable_excited_M
         (r"/hfs2/work/workspace/scratch/ka_bp4935-aimat1", "/path/to/workspace", None),
         (r"cd /home/pascal/todel/transferable_excited_MLIP", 'cd "$(dirname "$0")/../.."', None),
         (r"-u ka_bp4935", "-u $USER", None),
-        (r"#SBATCH -A aimat\b", "#SBATCH -A <account>", None)]
+        (r"#SBATCH -A aimat\b", "#SBATCH -A <account>", None),
+        (r"the shared workspace aimat1,", "the shared workspace,", None)]
 LEFTOVER = re.compile(r"ka_bp4935|/home/pascal|aimat0\d|aimat1\b")
 
 
@@ -51,6 +52,8 @@ def main():
     for p, rel in selected():
         txt = p.read_text(errors="strict")
         for pat, rep, only in SUBS:
+            if rel == "release/build_repo.py":  # copied verbatim (the substitution table would replace itself)
+                break
             if only is None or p.suffix in only:
                 txt = re.sub(pat, lambda m: rep, txt)
         if LEFTOVER.search(txt):

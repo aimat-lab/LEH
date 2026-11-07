@@ -2,10 +2,10 @@
 
 Dataset of the paper *Toward universal excited-state machine-learned potentials: a local excitation Hamiltonian for
 size consistency and transferability* by Pascal Friederich (ORCID 0000-0003-4465-1465), Karlsruhe Institute of
-Technology. Paper: TODO (journal, DOI; preprint arXiv TODO).
+Technology. Dataset DOI: 10.5281/zenodo.24042143. The paper is listed under the related works of this record.
 
-License: CC BY 4.0. Code and trained models: https://github.com/aimat-lab/LEH (MIT), archived on Zenodo
-(TODO code DOI).
+License: CC BY 4.0. Code and trained models: https://github.com/aimat-lab/LEH (MIT), archived with the checkpoints
+of all models on Zenodo (https://doi.org/10.5281/zenodo.24044613).
 
 ## Contents
 
@@ -167,5 +167,10 @@ permit redistribution with attribution, which this card provides.
 
 ## Citation
 
+Please cite the paper and this dataset:
+
 P. Friederich, Toward universal excited-state machine-learned potentials: a local excitation Hamiltonian for size
-consistency and transferability, TODO (journal/preprint, DOI).
+consistency and transferability (2026).
+
+P. Friederich, TD-ωB97X-D excited-state energies and forces of 106,933 molecules at equilibrium, thermal, and
+excited-state geometries (v4), Zenodo (2026), https://doi.org/10.5281/zenodo.24042143.

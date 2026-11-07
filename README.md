@@ -3,7 +3,7 @@
 Code, training configurations, and analysis scripts of the paper
 
 > P. Friederich, *Toward universal excited-state machine-learned potentials: a local excitation Hamiltonian for size
-> consistency and transferability* (2026), TODO: journal/preprint and DOI.
+> consistency and transferability* (2026).
 
 LEH-MACE predicts the singlet excitation energies of a molecule as the eigenvalues of a latent excitation Hamiltonian
 assembled from atom-centred blocks: an onsite block for every atom and a coupling block for every atom pair within the
@@ -11,8 +11,10 @@ cutoff, both predicted by a MACE encoder. For noninteracting molecules the Hamil
 predicted spectrum is exactly the union of the spectra of the molecules. The ground-state energy comes from a separate
 extensive readout; energies and forces of S0 and all excited states follow by automatic differentiation.
 
-- Dataset (TD-ωB97X-D/6-31G*, 303,061 geometries of 106,933 molecules, CC BY 4.0): Zenodo, TODO data DOI
-- Trained models (checkpoints of all runs of the paper, all seeds): Zenodo, TODO code DOI
+- Dataset (TD-ωB97X-D/6-31G*, 303,061 geometries of 106,933 molecules, CC BY 4.0):
+  [10.5281/zenodo.24042143](https://doi.org/10.5281/zenodo.24042143)
+- Trained models (checkpoints of all runs of the paper, all seeds) and a snapshot of this repository:
+  [10.5281/zenodo.24044613](https://doi.org/10.5281/zenodo.24044613)
 
 ## Installation
 
@@ -30,7 +32,7 @@ baselines (X-MACE with `external/xmace_exmlip_fix.patch`).
 
 ## Data
 
-Download the dataset record from Zenodo into a folder, e.g. `zenodo/`, then write the training files of this
+Download the dataset record ([10.5281/zenodo.24042143](https://doi.org/10.5281/zenodo.24042143)) into a folder, e.g. `zenodo/`, then write the training files of this
 repository (all of them are prefixes of the released entry order):
 
 ```bash
@@ -43,8 +45,9 @@ extrapolation uses QCDGE itself (Zhu et al., Sci. Data 2024), read by `exmlip/da
 
 ## Trained models
 
-Unpack the checkpoint archive from Zenodo in the repository root. Every run directory then contains `config.yaml`,
-`summary.json` (from this repository), `best.pt`, and `meta.pt`. The default production models (lowest validation
+Unpack `leh_mace_checkpoints.tar` from [10.5281/zenodo.24044613](https://doi.org/10.5281/zenodo.24044613) in the
+repository root (`tar xf leh_mace_checkpoints.tar`); `MODELS.csv` lists all models. Every run directory then
+contains `config.yaml`, `summary.json` (from this repository), `best.pt`, and `meta.pt`. The default production models (lowest validation
 S1–S3 error, chosen before seeds 2 and 3 were trained) are `experiments/al/runs/prodw_leh_v4_s0` (LEH) and
 `experiments/al/runs/prodw_softmin_v4_s3` (Direct-softmin).
 
@@ -115,8 +118,25 @@ TD-DFT excitation populations and the eigenvector comparison: `experiments/eigve
   title  = {Toward universal excited-state machine-learned potentials: a local excitation Hamiltonian for size
             consistency and transferability},
   author = {Friederich, Pascal},
-  year   = {2026},
-  note   = {TODO}
+  year   = {2026}
+}
+@misc{friederich2026lehdata,
+  title     = {{TD-$\omega$B97X-D} excited-state energies and forces of 106,933 molecules at equilibrium, thermal, and
+               excited-state geometries},
+  author    = {Friederich, Pascal},
+  year      = {2026},
+  version   = {v4},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.24042143}
+}
+@software{friederich2026lehcode,
+  title     = {{LEH-MACE}: code and trained models for a local excitation Hamiltonian for excited-state
+               machine-learned potentials},
+  author    = {Friederich, Pascal},
+  year      = {2026},
+  version   = {1.0.0},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.24044613}
 }
 ```
 

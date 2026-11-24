@@ -1,9 +1,13 @@
 # LEH-MACE: a local excitation Hamiltonian for excited-state machine-learned potentials
 
+[![arXiv](https://img.shields.io/badge/arXiv-2611.11019-b31b1b.svg)](https://arxiv.org/abs/2611.11019)
+[![Dataset](https://img.shields.io/badge/dataset-10.5281%2Fzenodo.24042143-blue.svg)](https://doi.org/10.5281/zenodo.24042143)
+[![Models](https://img.shields.io/badge/models-10.5281%2Fzenodo.24044613-blue.svg)](https://doi.org/10.5281/zenodo.24044613)
+
 Code, training configurations, and analysis scripts of the paper
 
 > P. Friederich, *Toward universal excited-state machine-learned potentials: a local excitation Hamiltonian for size
-> consistency and transferability* (2026).
+> consistency and transferability*, arXiv:2611.11019 (2026). [https://arxiv.org/abs/2611.11019](https://arxiv.org/abs/2611.11019)
 
 LEH-MACE predicts the singlet excitation energies of a molecule as the eigenvalues of a latent excitation Hamiltonian
 assembled from atom-centred blocks: an onsite block for every atom and a coupling block for every atom pair within the
@@ -115,10 +119,15 @@ TD-DFT excitation populations and the eigenvector comparison: `experiments/eigve
 
 ```bibtex
 @misc{friederich2026leh,
-  title  = {Toward universal excited-state machine-learned potentials: a local excitation Hamiltonian for size
-            consistency and transferability},
-  author = {Friederich, Pascal},
-  year   = {2026}
+  title         = {Toward universal excited-state machine-learned potentials: a local excitation Hamiltonian for
+                   size consistency and transferability},
+  author        = {Friederich, Pascal},
+  year          = {2026},
+  eprint        = {2611.11019},
+  archivePrefix = {arXiv},
+  primaryClass  = {physics.chem-ph},
+  doi           = {10.48550/arXiv.2611.11019},
+  url           = {https://arxiv.org/abs/2611.11019}
 }
 @misc{friederich2026lehdata,
   title     = {{TD-$\omega$B97X-D} excited-state energies and forces of 106,933 molecules at equilibrium, thermal, and
